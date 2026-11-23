@@ -30,7 +30,7 @@ date: $date
 
 在这里写正文。
 "@
-Set-Content -Path $file -Value $content -Encoding UTF8
+[System.IO.File]::WriteAllText($file, $content, (New-Object System.Text.UTF8Encoding($false)))
 
 Write-Host ''
 Write-Host ('已创建：' + $file) -ForegroundColor Green
