@@ -8,7 +8,10 @@ interface Props {
 
 const { title, description = '记录我在做的事。' } = Astro.props;
 const year = new Date().getFullYear();
-const base = import.meta.env.BASE_URL;
+// BASE_URL 在 Astro 7 里是 '/blog'（没有结尾斜杠），这里统一补成 '/blog/'
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+const repo = 'https://github.com/ljyxyx/blog';
 ---
 
 <!doctype html>
@@ -26,6 +29,7 @@ const base = import.meta.env.BASE_URL;
       <nav>
         <a href={base}>文章</a>
         <a href={base + 'about/'}>关于</a>
+        <a class="write" href={repo + '/new/main/src/content/posts'} target="_blank" rel="noopener">＋ 写文章</a>
       </nav>
     </header>
     <main>

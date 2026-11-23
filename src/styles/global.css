@@ -60,3 +60,8 @@ footer {
   margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
   color: var(--muted); font-size: .85rem;
 }
+
+nav .write { color: var(--accent); }
+article .meta { display: flex; gap: 1rem; align-items: center; }
+article .edit { font-size: .82rem; color: var(--muted); border: 1px solid var(--line); padding: .1rem .5rem; border-radius: 4px; }
+article .edit:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
