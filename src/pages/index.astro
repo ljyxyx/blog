@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('posts', (post) => !post.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+
+<Base title="笔记">
+  <h1>笔记</h1>
+  <p class="lede">C++、分布式系统、还有手上正在做的项目。</p>
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a href={'/posts/' + post.id + '/'}>{post.data.title}</a>
+        <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+        {post.data.summary && <p>{post.data.summary}</p>}
+      </li>
+    ))}
+  </ul>
+</Base>
